@@ -1,4 +1,4 @@
-// Author: Shuyi (Nick) Liu
+// Author: Shuyi ( Nick ) Liu
 // userid: lius15
 // Email: shuyi.liu@vanderbilt.edu
 // Honor Statement: I have neither given nor received unauthorized help on this assignment.
