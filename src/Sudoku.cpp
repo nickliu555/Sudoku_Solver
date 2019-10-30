@@ -231,7 +231,7 @@ bool Sudoku::checkRow(int row, int val)
  *
  * row - the row ([0,8])
  * col- the column ([0,8])
- * val - the value ([1,9]))
+ * val - the value ([1,9])
  *
   * return true if it is valid, false otherwise
  */
