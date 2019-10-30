@@ -229,9 +229,9 @@ bool Sudoku::checkRow(int row, int val)
  * Checks if a value can be placed in that block given the subgrid that its in (subgrid is
  * determined based on block position)
  *
- * row - row the value to be places is in
- * col- column the value to be places is in
- * val - value
+ * row - the row ([0,8])
+ * col- the column ([0,8])
+ * val - the value ([1,9]))
  *
   * return true if it is valid, false otherwise
  */
