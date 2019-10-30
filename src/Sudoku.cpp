@@ -192,168 +192,6 @@ std::ostream& operator<<(std::ostream& out, const Sudoku& sudoku)
 }
 
 /**
- * Checks if that value (in parameter) can be placed in the 1st subgrid in its current state
- * val - value
- * return true if it is valid, false otherwise
- */
-bool Sudoku::checkSubGrid1(int val)
-{
-    for (int r = 0; r < 3; r++) {
-        for (int c = 0; c < 3; c++) {
-            // if this value is already on other blocks of the subgrid then return false
-            if (puzzle[r][c] == val)
-                return false;
-        }
-    }
-    // if passes then return true
-    return true;
-}
-
-/**
- * Checks if that value (in parameter) can be placed in the 2st subgrid in its current state
- * val - value
- * return true if it is valid, false otherwise
- */
-bool Sudoku::checkSubGrid2(int val)
-{
-    for (int r = 0; r < 3; r++) {
-        for (int c = 3; c < 6; c++) {
-            // if this value is already on other blocks of the subgrid then return false
-            if (puzzle[r][c] == val)
-                return false;
-        }
-    }
-    // if passes then return true
-    return true;
-}
-
-/**
- * Checks if that value (in parameter) can be placed in the 3rd subgrid in its current state
- * val - value
- * return true if it is valid, false otherwise
- */
-bool Sudoku::checkSubGrid3(int val)
-{
-    for (int r = 0; r < 3; r++) {
-        for (int c = 6; c < 9; c++) {
-            // if this value is already on other blocks of the subgrid then return false
-            if (puzzle[r][c] == val)
-                return false;
-        }
-    }
-    // if passes then return true
-    return true;
-}
-
-/**
- * Checks if that value (in parameter) can be placed in the 4th subgrid in its current state
- * val - value
- * return true if it is valid, false otherwise
- */
-bool Sudoku::checkSubGrid4(int val)
-{
-    for (int r = 3; r < 6; r++) {
-        for (int c = 0; c < 3; c++) {
-            // if this value is already on other blocks of the subgrid then return false
-            if (puzzle[r][c] == val)
-                return false;
-        }
-    }
-    // if passes then return true
-    return true;
-}
-
-/**
- * Checks if that value (in parameter) can be placed in the 5th subgrid in its current state
- * val - value
- * return true if it is valid, false otherwise
- */
-bool Sudoku::checkSubGrid5(int val)
-{
-    for (int r = 3; r < 6; r++) {
-        for (int c = 3; c < 6; c++) {
-            // if this value is already on other blocks of the subgrid then return false
-            if (puzzle[r][c] == val)
-                return false;
-        }
-    }
-    // if passes then return true
-    return true;
-}
-
-/**
- * Checks if that value (in parameter) can be placed in the 6th subgrid in its current state
- * val - value
- * return true if it is valid, false otherwise
- */
-bool Sudoku::checkSubGrid6(int val)
-{
-    for (int r = 3; r < 6; r++) {
-        for (int c = 6; c < 9; c++) {
-            // if this value is already on other blocks of the subgrid then return false
-            if (puzzle[r][c] == val)
-                return false;
-        }
-    }
-    // if passes then return true
-    return true;
-}
-
-/**
- * Checks if that value (in parameter) can be placed in the 7th subgrid in its current state
- * val - value
- * return true if it is valid, false otherwise
- */
-bool Sudoku::checkSubGrid7(int val)
-{
-    for (int r = 6; r < 9; r++) {
-        for (int c = 0; c < 3; c++) {
-            // if this value is already on other blocks of the subgrid then return false
-            if (puzzle[r][c] == val)
-                return false;
-        }
-    }
-    // if passes then return true
-    return true;
-}
-
-/**
- * Checks if that value (in parameter) can be placed in the 8th subgrid in its current state
- * val - value
- * return true if it is valid, false otherwise
- */
-bool Sudoku::checkSubGrid8(int val)
-{
-    for (int r = 6; r < 9; r++) {
-        for (int c = 3; c < 6; c++) {
-            // if this value is already on other blocks of the subgrid then return false
-            if (puzzle[r][c] == val)
-                return false;
-        }
-    }
-    // if passes then return true
-    return true;
-}
-
-/**
- * Checks if that value (in parameter) can be placed in the 9th subgrid in its current state
- * val - value
- * return true if it is valid, false otherwise
- */
-bool Sudoku::checkSubGrid9(int val)
-{
-    for (int r = 6; r < 9; r++) {
-        for (int c = 6; c < 9; c++) {
-            // if this value is already on other blocks of the subgrid then return false
-            if (puzzle[r][c] == val)
-                return false;
-        }
-    }
-    // if passes then return true
-    return true;
-}
-
-/**
  * Checks if that value can be placed in that block given the column
  * col - column number
  * val - value
@@ -388,35 +226,30 @@ bool Sudoku::checkRow(int row, int val)
 }
 
 /**
- * Checks if that value can be placed in that block given the subgrid that its in (subgrid is
- * determined based on block position) row - row number val - value return true if it is valid,
- * false otherwise
+ * Checks if a value can be placed in that block given the subgrid that its in (subgrid is
+ * determined based on block position)
+ *
+ * row - row the value to be places is in
+ * col- column the value to be places is in
+ * val - value
+ *
+  * return true if it is valid, false otherwise
  */
 bool Sudoku::checkSubGridValid(int row, int col, int val)
 {
-    bool subGridGood = false;
-
-    // if its in the 1st subgrid
-    if (row >= 0 && row <= 2 && col >= 0 && col <= 2)
-        subGridGood = checkSubGrid1(val);
-    // if its in the 2nd subgrid
-    if (row >= 0 && row <= 2 && col >= 3 && col <= 5)
-        subGridGood = checkSubGrid2(val);
-    // if its in the 3rd subgrid
-    if (row >= 0 && row <= 2 && col >= 6 && col <= 8)
-        subGridGood = checkSubGrid3(val);
-    if (row >= 3 && row <= 5 && col >= 0 && col <= 2)
-        subGridGood = checkSubGrid4(val);
-    if (row >= 3 && row <= 5 && col >= 3 && col <= 5)
-        subGridGood = checkSubGrid5(val);
-    if (row >= 3 && row <= 5 && col >= 6 && col <= 8)
-        subGridGood = checkSubGrid6(val);
-    if (row >= 6 && row <= 8 && col >= 0 && col <= 2)
-        subGridGood = checkSubGrid7(val);
-    if (row >= 6 && row <= 8 && col >= 3 && col <= 5)
-        subGridGood = checkSubGrid8(val);
-    if (row >= 6 && row <= 8 && col >= 6 && col <= 8)
-        subGridGood = checkSubGrid9(val);
-
-    return subGridGood;
+    int rowStart = row + (row % 3);
+    int rowEnd = rowStart + 3;
+    
+    int colStart = col + (col % 3);
+    int colEnd = colStart + 3;
+    
+    for (int r = rowStart; r < rowEnd; r++) {
+        for (int c = colStart; c < colEnd; c++) {
+            // if this value is already on other blocks of the subgrid then return false
+            if (puzzle[r][c] == val)
+                return false;
+        }
+    }
+    // if passes then return true
+    return true;
 }
