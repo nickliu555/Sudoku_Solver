@@ -237,10 +237,10 @@ bool Sudoku::checkRow(int row, int val)
  */
 bool Sudoku::checkSubGridValid(int row, int col, int val)
 {
-    int rowStart = row + (row % 3);
+    int rowStart = row - (row % 3);
     int rowEnd = rowStart + 3;
     
-    int colStart = col + (col % 3);
+    int colStart = col - (col % 3);
     int colEnd = colStart + 3;
     
     for (int r = rowStart; r < rowEnd; r++) {
